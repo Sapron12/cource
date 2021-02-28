@@ -17,7 +17,6 @@ public class User implements UserDetails {
     private Long id;
     private String username;
     private String password;
-    private String testStatus = "Тестирование не пройдено";
     private boolean active;
     @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
     @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
@@ -30,15 +29,6 @@ public class User implements UserDetails {
     }
 
     public User(){
-    }
-
-    public String getTestStatus() {
-        return testStatus;
-    }
-
-    public User setTestStatus(String testStatus) {
-        this.testStatus = testStatus;
-        return this;
     }
 
     public boolean isActive() {

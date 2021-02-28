@@ -14,6 +14,13 @@
     <title>Главная страница</title>
 </head>
 <body>
+<style>
+    .shadow {
+        background: peachpuff; /* Цвет фона */
+        box-shadow: 0 0 10px rgba(0,0,0,0.5); /* Параметры тени */
+        padding: 10px;
+    }
+</style>
 <nav class="nav">
     <a class="nav-link active" aria-current="page" href="/test">Пройти тест</a>
     <a class="nav-link" href="/logout" tabindex="-1" aria-disabled="true">Выход</a>
@@ -22,9 +29,131 @@
 <h5>Пользователи системы: </h5>
 <ul>
     {{#users}}
-        <li><span>{{username}} - {{#testStatus}}{{testStatus}}{{/testStatus}}</span></li>
+        <li><span>{{username}}</span></li>
     {{/users}}
 </ul>
+
+<div class="row">
+    <div class="col-4">
+        <h3>
+            Транзакции
+        </h3>
+        <table class="table m-2 shadow">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">First</th>
+                <th scope="col">Last</th>
+                <th scope="col">Handle</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <th scope="row">1</th>
+                <td>Mark</td>
+                <td>Otto</td>
+                <td>@mdo</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-4">
+        <h3>
+            Товары
+        </h3>
+        <table class="table m-2 shadow">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">First</th>
+                <th scope="col">Last</th>
+                <th scope="col">Handle</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <th scope="row">1</th>
+                <td>Mark</td>
+                <td>Otto</td>
+                <td>@mdo</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-4">
+        <h3>
+            Склад
+        </h3>
+        <table class="table m-2 shadow">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">First</th>
+                <th scope="col">Last</th>
+                <th scope="col">Handle</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <th scope="row">1</th>
+                <td>Mark</td>
+                <td>Otto</td>
+                <td>@mdo</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+<div class="row">
+    <div class="col-6">
+        <h3>
+            Работники
+        </h3>
+        <table class="table m-2 shadow">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">First</th>
+                <th scope="col">Last</th>
+                <th scope="col">Handle</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <th scope="row">1</th>
+                <td>Mark</td>
+                <td>Otto</td>
+                <td>@mdo</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-6">
+        <h3>
+            Капитал
+        </h3>
+        <table class="table m-2 shadow">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">First</th>
+                <th scope="col">Last</th>
+                <th scope="col">Handle</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <th scope="row">1</th>
+                <td>Mark</td>
+                <td>Otto</td>
+                <td>@mdo</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
 <!-- Optional JavaScript; choose one of the two! -->
 
 <!-- Option 1: Bootstrap Bundle with Popper -->

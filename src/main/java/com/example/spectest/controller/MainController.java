@@ -3,6 +3,7 @@ package com.example.spectest.controller;
 import com.example.spectest.entity.Role;
 import com.example.spectest.entity.User;
 import com.example.spectest.repository.UserRepository;
+import com.example.spectest.service.EconomicService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,6 +14,9 @@ import java.util.Map;
 
 @Controller
 public class MainController {
+
+    @Autowired
+    private EconomicService economicService;
 
     @Autowired
     private UserRepository userRepository;
@@ -26,8 +30,6 @@ public class MainController {
 
     @GetMapping("/registration")
     public String getRegistrationPage(Map<String, Object> model) {
-
-
         return "registration";
     }
 
@@ -53,6 +55,4 @@ public class MainController {
         }
         return "redirect:/";
     }
-
-
 }
