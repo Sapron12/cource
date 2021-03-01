@@ -1,6 +1,3 @@
-
-
-
 <!doctype html>
 <html lang="en">
 <head>
@@ -9,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
 
     <title>Главная страница</title>
 </head>
@@ -17,7 +15,7 @@
 <style>
     .shadow {
         background: peachpuff; /* Цвет фона */
-        box-shadow: 0 0 10px rgba(0,0,0,0.5); /* Параметры тени */
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Параметры тени */
         padding: 10px;
     }
 </style>
@@ -32,132 +30,158 @@
         <li><span>{{username}}</span></li>
     {{/users}}
 </ul>
-
 <div class="row">
-    <div class="col-4">
+    <div class="col">
+        <form action="/next" method="post">
+            <input type="submit" value="Я календарь переверну на месяц">
+        </form>
+    </div>
+    <div class="col"><h3>Ваш капитал - {{capital}}</h3></div>
+</div>
+
+<div style="width: 90%" class="row">
+
+    <div style="overflow: scroll; height: 500px" class="col-6 shadow">
         <h3>
             Транзакции
         </h3>
-        <table class="table m-2 shadow">
+        <table class="table m-2">
             <thead>
             <tr>
-                <th scope="col">#</th>
-                <th scope="col">First</th>
-                <th scope="col">Last</th>
-                <th scope="col">Handle</th>
+                <th scope="col">Пришло</th>
+                <th scope="col">Ушло</th>
+                <th scope="col">Наименование</th>
+                <th scope="col">Дата</th>
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-            </tr>
+            {{#tran}}
+                <tr>
+                    <td>{{increase}}</td>
+                    <td>{{decrease}}</td>
+                    <td>{{name}}</td>
+                    <td>{{date}}</td>
+                </tr>
+            {{/tran}}
             </tbody>
         </table>
     </div>
-    <div class="col-4">
+    <div data-spy="scroll" style="height: 500px" class="col-6">
         <h3>
             Товары
         </h3>
         <table class="table m-2 shadow">
             <thead>
             <tr>
-                <th scope="col">#</th>
-                <th scope="col">First</th>
-                <th scope="col">Last</th>
-                <th scope="col">Handle</th>
+                <th scope="col">Название</th>
+                <th scope="col">Цена</th>
+                <th scope="col">Оборудование</th>
+                <th scope="col">Купить</th>
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-    <div class="col-4">
-        <h3>
-            Склад
-        </h3>
-        <table class="table m-2 shadow">
-            <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">First</th>
-                <th scope="col">Last</th>
-                <th scope="col">Handle</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-            </tr>
+
+            {{#prod}}
+                <tr>
+                    <td>{{name}}</td>
+                    <td>{{price}}</td>
+                    <td>{{forUse}}</td>
+                    <td>
+                        <form method="post" action="/prod/{{id}}">
+                            <input style="width: 60px;" type="number" name="count">
+                            <input type="submit" value="Купить">
+                        </form>
+
+                    </td>
+                </tr>
+            {{/prod}}
             </tbody>
         </table>
     </div>
 
 </div>
-<div class="row">
-    <div class="col-6">
+<div style="width: 90%" class="row">
+    <div class="col-3">
         <h3>
             Работники
         </h3>
         <table class="table m-2 shadow">
             <thead>
             <tr>
-                <th scope="col">#</th>
-                <th scope="col">First</th>
-                <th scope="col">Last</th>
-                <th scope="col">Handle</th>
+                <th scope="col">Должность</th>
+                <th scope="col">Зарплата</th>
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-            </tr>
+            {{#emp}}
+                <tr>
+                    <td>{{position}}</td>
+                    <td>{{salary}}</td>
+                </tr>
+            {{/emp}}
             </tbody>
         </table>
     </div>
-    <div class="col-6">
+    <div class="col-4">
         <h3>
-            Капитал
+            Дюпон
         </h3>
         <table class="table m-2 shadow">
             <thead>
             <tr>
-                <th scope="col">#</th>
-                <th scope="col">First</th>
-                <th scope="col">Last</th>
-                <th scope="col">Handle</th>
+                <th scope="col">Рентабельность (чистая)</th>
+                <th scope="col">Оборачиваемость</th>
+                <th scope="col">Фин. рычаг</th>
+                <th scope="col">Рентабильность</th>
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-            </tr>
+
+            {{#dupon}}
+                <tr>
+                    <th scope="row">{{profitMargin}}</th>
+                    <td>{{assetTurnover}}</td>
+                    <td>{{leverage}}</td>
+                    <td>{{roe}}</td>
+                </tr>
+            {{/dupon}}
             </tbody>
         </table>
     </div>
-
+    <div class="col-5">
+        <h3>
+            Склад
+        </h3>
+        <table class="table m-2 shadow">
+            <thead>
+            <tr>
+                <th scope="col">Название</th>
+                <th scope="col">Цена</th>
+                <th scope="col">Оборудование</th>
+                <th scope="col">Количество</th>
+            </tr>
+            </thead>
+            <tbody>
+            {{#ware}}
+                <tr>
+                    {{#product}}
+                        <th scope="row">{{name}}</th>
+                        <td>{{price}}</td>
+                        <td>{{forUse}}</td>
+                    {{/product}}
+                    <td>{{count}}</td>
+                </tr>
+            {{/ware}}
+            </tbody>
+        </table>
+    </div>
 </div>
 <!-- Optional JavaScript; choose one of the two! -->
 
 <!-- Option 1: Bootstrap Bundle with Popper -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+        crossorigin="anonymous"></script>
 
 <!-- Option 2: Separate Popper and Bootstrap JS -->
 <!--

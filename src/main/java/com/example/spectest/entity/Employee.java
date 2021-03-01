@@ -11,12 +11,12 @@ public class Employee {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String position;
-    private Long salary;
+    private Double salary;
 
     public Employee() {
     }
 
-    public Employee(String position, Long salary) {
+    public Employee(String position, Double salary) {
         this.position = position;
         this.salary = salary;
     }
@@ -30,11 +30,11 @@ public class Employee {
         return this;
     }
 
-    public Long getSalary() {
+    public Double getSalary() {
         return salary;
     }
 
-    public Employee setSalary(Long salary) {
+    public Employee setSalary(Double salary) {
         this.salary = salary;
         return this;
     }

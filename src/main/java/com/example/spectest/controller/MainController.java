@@ -1,5 +1,6 @@
 package com.example.spectest.controller;
 
+import com.example.spectest.entity.Product;
 import com.example.spectest.entity.Role;
 import com.example.spectest.entity.User;
 import com.example.spectest.repository.UserRepository;
@@ -7,7 +8,9 @@ import com.example.spectest.service.EconomicService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Collections;
 import java.util.Map;
@@ -23,8 +26,13 @@ public class MainController {
 
     @GetMapping("/")
     public String getMainPage(Map<String, Object> model) {
-
+        model.put("prod", economicService.getProductInfo());
+        model.put("ware", economicService.getWarehouseInfo());
+        model.put("tran", economicService.getTransactionInfo());
+        model.put("emp", economicService.getEmploeeInfo());
         model.put("users", userRepository.findAll());
+        model.put("capital", economicService.getCapitalRepository().findTopByOrderByIdDesc().getTotal());
+        model.put("dupon", economicService.getDuponData());
         return "Main";
     }
 
@@ -55,4 +63,37 @@ public class MainController {
         }
         return "redirect:/";
     }
+
+    @PostMapping("/prod/{product}")
+    public String buyProduct(@PathVariable Product product, @RequestParam(name = "count") Long count, Map<String, Object> map) {
+        economicService.addToWarehouse(product, count);
+        return "redirect:/";
+    }
+
+    @PostMapping("/next")
+    public String nextMonth() {
+        economicService.nextMonth();
+        return "redirect:/";
+    }
+
+
+//    @PostMapping("test/{test}")
+//    public String sendTest(@PathVariable Test test, @RequestParam(name = "answer") List<String> answers, Map<String, Object> map, @AuthenticationPrincipal User user) {
+//        System.out.println(Arrays.toString(answers.toArray()));
+//        List<QuestionsAndAnswers> answersList = test.getQuestionsAndAnswers();
+//        StringBuilder message = new StringBuilder();
+//        for (int i = 0; i < answersList.size(); i++) {
+//            if (!answersList.get(i).getAnswer().equals(answers.get(i))) {
+//                message.append("\n").append(String.valueOf(i)).append(" - ответ неверный");
+//            }
+//        }
+//        if (message.toString().equals("")){
+//            message.append("Все ответы вреные - тест пройден");
+//            user.setTestStatus("Тестирование пройдено успешно");
+//            userRepository.save(user);
+//        }
+//        map.put("message", message.toString());
+//
+//        return getCurrentTest(test, map);
+//    }
 }

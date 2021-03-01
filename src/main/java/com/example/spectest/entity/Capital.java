@@ -24,8 +24,6 @@ public class Capital {
         this.date = date;
 
     }
-
-
     public Double getTotal() {
         return total;
     }
