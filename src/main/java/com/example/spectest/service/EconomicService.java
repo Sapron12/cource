@@ -42,6 +42,12 @@ public class EconomicService {
     @Autowired
     private DuponRepository duponRepository;
 
+    public void chekCapital() {
+        if (capitalRepository.findAll().size() == 0) {
+            capitalRepository.save(new Capital(10000d, createStartDate()));
+        }
+    }
+
     public Employee addEmployee(String position, Double salary) {
         return employeesRepository.save(new Employee(position, salary));
     }
@@ -50,8 +56,8 @@ public class EconomicService {
         return transactionRepository.save(new Transaction(increase, decrease, name, calendarRepository.findTopByOrderByIdDesc().getGlobalDate()));
     }
 
-    public void createStartDate() {
-        calendarRepository.save(new Calendar().setGlobalDate(LocalDate.now()));
+    public LocalDate createStartDate() {
+        return calendarRepository.save(new Calendar().setGlobalDate(LocalDate.now())).getGlobalDate();
     }
 
     public void nextMonth() {

@@ -26,6 +26,7 @@ public class MainController {
 
     @GetMapping("/")
     public String getMainPage(Map<String, Object> model) {
+        economicService.chekCapital();
         model.put("prod", economicService.getProductInfo());
         model.put("ware", economicService.getWarehouseInfo());
         model.put("tran", economicService.getTransactionInfo());
@@ -34,6 +35,12 @@ public class MainController {
         model.put("capital", economicService.getCapitalRepository().findTopByOrderByIdDesc().getTotal());
         model.put("dupon", economicService.getDuponData());
         return "Main";
+    }
+
+    @PostMapping("/add/silor")
+    public String addSailor() {
+        economicService.addEmployee("Продавец", 300d);
+        return "redirect:/";
     }
 
     @GetMapping("/registration")

@@ -17,6 +17,11 @@ public class Capital {
     public Capital() {
     }
 
+    public Capital(Double total, LocalDate date) {
+        this.total = total;
+        this.date = date;
+    }
+
     public Capital(List<Transaction> transactions, LocalDate date, Double lastTotal) {
         this.total = transactions.stream()
                 .map(e -> e.getDecrease() + e.getIncrease())
