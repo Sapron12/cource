@@ -11,5 +11,4 @@ import java.util.List;
 
 @Repository
 public interface TransactionRepository  extends JpaRepository<Transaction, Long> {
-    public List<Transaction> findAllByDateBetween(LocalDate first, LocalDate second);
 }

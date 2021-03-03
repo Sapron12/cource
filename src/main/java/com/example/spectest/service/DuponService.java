@@ -17,8 +17,6 @@ public class DuponService extends EconomicService {
         }).reduce(0d, Double::sum);
     }
 
-    // чистая прибыль/выручка * выручка/активы * активы/капитал
-
     //выручка
     public Double getRevenue() {
         return transactionRepository.findAll().stream()
